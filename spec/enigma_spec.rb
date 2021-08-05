@@ -20,7 +20,7 @@ RSpec.describe Enigma do
       })
     end
 
-    it '#decrypt(decryption, key, date)' do 
+    xit '#decrypt(decryption, key, date)' do 
       enigma = Enigma.new
 
       expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq({
@@ -30,7 +30,7 @@ RSpec.describe Enigma do
       })
     end
 
-    it 'encrypts without a key' do 
+    xit 'encrypts without a key' do 
       enigma = Enigma.new
 
       expect(enigma.encrypt.keys("hello world", "040895")).to eq([:encryption, :key, :date])
