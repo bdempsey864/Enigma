@@ -1,29 +1,39 @@
-require_relative 'spec_helper'
+require 'spec_helper'
 require 'date'
+require './lib/enigma'
 
 RSpec.describe Enigma do
-  before :each do
-    @enigma = Enigma.new
-  end
+  context "#initialize" do 
+    it 'exists' do 
+      enigma = Enigma.new
 
-  it 'exists' do
-    expect(@enigma).to be_an(Enigma)
-  end
+      expect(enigma).to be_instance_of Enigma
+    end
 
-  it 'can encrypt a message' do
-    expect(@enigma.encrypt("hello world", "02715", "040895")).to eq({
-      encryption: "keder ohulw", 
-      key: "02715", 
-      date: "040895"
-    })
-  end
+    it '#encrypt(encryption, key, date)' do 
+      enigma = Enigma.new
 
-  it 'can decrypt a message' do
-    expect(@enigma.decrypt("keder ohulw", "02715", "040895")).to eq.({
-      decryption: "hello world",
-      key: "02175",
-      date: "040895"
-    })
-  end
+      expect(enigma.encrypt("hello world", "02715", "040895")).to eq({
+        encryption: "keder ohulw",
+        key: "02715",
+        date: "040895"
+      })
+    end
 
+    it '#decrypt(decryption, key, date)' do 
+      enigma = Enigma.new
+
+      expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq({
+        decryption: "hello world",
+        key: "02715",
+        date: "040895"
+      })
+    end
+
+    it 'encrypts without a key' do 
+      enigma = Enigma.new
+
+      expect(enigma.encrypt.keys("hello world", "040895")).to eq([:encryption, :key, :date])
+    end
+  end
 end
