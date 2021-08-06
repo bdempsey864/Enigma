@@ -1,9 +1,10 @@
 class Encryption
   attr_reader :message, 
               :key, 
-              :date
+              :date,
+              :alphabet
   def initialize(data)
-    @message = data[:message]
+    @message = data[:message].downcase
     @key = data.fetch(:key, format_key)
     @date = data.fetch(:date, format_date)
     @alphabet = ("a".."z").to_a << " "
@@ -38,6 +39,11 @@ class Encryption
     shift_hash[:b_shift] = (key_hash[:b_key].to_i + date_hash[:b_offset].to_i).to_s
     shift_hash[:c_shift] = (key_hash[:c_key].to_i + date_hash[:c_offset].to_i).to_s
     shift_hash[:d_shift] = (key_hash[:d_key].to_i + date_hash[:d_offset].to_i).to_s
-    require "pry"; binding.pry
+    offsets = []
+    @message.split("").each do |letter|
+      offsets << @alphabet.index(letter)
+    end
+    offsets
+    # require "pry"; binding.pry
   end
 end
