@@ -2,8 +2,12 @@ class Enigma
   def initialize
   end
 
-  def encrypt(encryption, key, date)
-    Encryption.new(encryption, key, date)
+  def encrypt(message, key, date)
+    Encryption.new({
+      message: message,
+      key: key,
+      date: date
+    })
 
   end
 

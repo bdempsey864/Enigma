@@ -5,7 +5,7 @@ require './lib/encryption'
 RSpec.describe Encryption do 
   context 'initialize' do 
     coded_message = Encryption.new({
-      message: 'hello world',
+      message: 'Lloyd Christmas',
       key: '02715',
       date: '040895'
     })
@@ -31,7 +31,7 @@ RSpec.describe Encryption do
 
     end
 
-    xit 'can encrypt a message given key and date' do
+    it 'can encrypt a message given key and date' do
       expect(coded_message.encrypt).to eq("keder ohulw")
     end
   end
