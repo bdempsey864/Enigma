@@ -22,8 +22,17 @@ RSpec.describe Encryption do
       expect(date_message.date).to eq('080521')
     end
 
-    xit 'can encrypt a message given key and date' do
-      expect(coded_message.encrypt).to eq("hello world")
+    it '#format_key' do 
+      date_message = Encryption.new({
+        message: 'hello world'
+      })
+    expect(date_message.key).to be_a String
+    expect(date_message.key.length).to eq(5)
+
+    end
+
+    it 'can encrypt a message given key and date' do
+      expect(coded_message.encrypt).to eq("keder ohulw")
     end
   end
 end
