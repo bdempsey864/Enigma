@@ -79,4 +79,23 @@ class Encryption
     end
     encrypted_message
   end
+
+  def decrypted_index
+    fours = offsets.each_slice(4).to_a
+    decrypted_index = []
+    fours.each do |four|
+      four.each_with_index do |ele, index|
+        decrypted_index << ele - shift[index]
+      end
+    end
+    decrypted_index
+  end
+
+  def decrypt
+    decrypted_message = ""
+    new_index.each do |index| 
+      decrypted_message << @alphabet[index%27]
+    end
+    decrypted_message
+  end
 end

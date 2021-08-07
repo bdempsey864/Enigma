@@ -71,7 +71,21 @@ RSpec.describe Encryption do
       date: "#{Time.now.strftime("%m")}#{Time.now.strftime("%d")}#{Time.now.strftime("%y")}"
       })
 
-      expect(coded_message.encrypt).to eq("keder ohulw")
+      expect(todays_date.encrypt).to be_a String
+    end
+
+    it '#decrypted_index' do 
+      expect(coded_message.decrypted_index).to eq
+    end
+
+    it 'can decrypt a message given key and date' do 
+      decrypt_message = Encryption.new({
+      message: 'keder ohulw',
+      key: '02715',
+      date: '040895'
+      })
+
+      expect(decrypt_message.decrypt).to eq('hello world')
     end
   end
 end
