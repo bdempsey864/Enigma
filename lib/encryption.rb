@@ -93,7 +93,7 @@ class Encryption
 
   def decrypt
     decrypted_message = ""
-    new_index.each do |index| 
+    decrypted_index.each do |index| 
       decrypted_message << @alphabet[index%27]
     end
     decrypted_message

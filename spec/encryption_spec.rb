@@ -75,7 +75,7 @@ RSpec.describe Encryption do
     end
 
     it '#decrypted_index' do 
-      expect(coded_message.decrypted_index).to eq
+      expect(coded_message.decrypted_index).to eq([4, -23, -62, -9, 11, -1, -51, -6, 14, -16, -70])
     end
 
     it 'can decrypt a message given key and date' do 
