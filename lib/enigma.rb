@@ -1,21 +1,26 @@
+require './lib/encryption'
+
 class Enigma
-  # def initialize
-  # end
+  def initialize
+  end
 
   def encrypt(message, key, date)
-    Encryption.new({
+    encrypting = Encryption.new({
       message: message,
       key: key,
-      date: date
+      date: date, 
+      status: "encrypt" 
     })
-
+    encrypting.format_message
   end
 
   def decrypt(message, key, date)
-    Encryption.new({
+    encrypting = Encryption.new({
       message: message,
       key: key,
-      date: date
+      date: date,
+      status: "decrypt" 
     })
+    encrypting.format_message
   end
 end

@@ -8,6 +8,7 @@ class Encryption
     @key = data.fetch(:key, format_key)
     @date = data.fetch(:date, format_date)
     @alphabet = ("a".."z").to_a << " "
+    @status = data[:status]
   end
 
   def format_date
@@ -78,6 +79,19 @@ class Encryption
       encrypted_message << @alphabet[index%27]
     end
     encrypted_message
+  end
+
+  def format_message
+    final_message = {
+      key: self.key,
+      date: self.date
+    }
+    if @status == "encrypt" 
+      final_message[:encryption] = self.encrypt
+    else 
+      final_message[:decryption] = self.decrypt
+    end
+    final_message
   end
 
   def decrypted_index
