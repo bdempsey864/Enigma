@@ -14,22 +14,6 @@ RSpec.describe Encryption do
       expect(coded_message).to be_instance_of Encryption
     end
 
-    it '#format_date' do 
-      date_message = Encryption.new({
-        message: 'hello world',
-        key: '02715'
-      })
-      expect(date_message.date).to eq("#{Time.now.strftime("%m")}#{Time.now.strftime("%d")}#{Time.now.strftime("%y")}")
-    end
-
-    it '#format_key' do 
-      date_message = Encryption.new({
-        message: 'hello world'
-      })
-    expect(date_message.key).to be_a String
-    expect(date_message.key.length).to eq(5)
-    end
-
     it '#key_hash' do 
       expect(coded_message.key_hash).to eq({
         :a_key=>"02", 
