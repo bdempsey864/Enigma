@@ -1,11 +1,10 @@
 require './lib/enigma'
 
-message_file = ARGV[0]
-file = File.open("./lib/#{message_file}")
-message = file.read  
 enigma = Enigma.new
-message_encryption = enigma.encrypt(message)
-target_file = ARGV[1]
-encrypted_file = File.new("./lib/#{target_file}", "w+")
+source_file = File.open("./lib/#{ARGV[0]}") 
+message_encryption = enigma.encrypt(source_file.read)
+File.new("./lib/#{ARGV[1]}", "w+").write(message_encryption[:encryption])
+puts "Created '#{ARGV[1]}' with the key #{message_encryption[:key]} and date #{message_encryption[:date]}"
 
+# ruby ./lib/encrypt.rb message.txt encrypted.txt
 
