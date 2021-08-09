@@ -36,8 +36,8 @@ RSpec.describe Encryption do
       expect(coded_message.shift).to eq([3, 27, 73, 20])
     end
 
-    it '#offsets' do
-      expect(coded_message.offsets).to eq([7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3])
+    it '#character_index' do
+      expect(coded_message.character_index).to eq([7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3])
     end
 
     it '#new_index' do 
@@ -85,7 +85,7 @@ RSpec.describe Encryption do
         key: '02715',
         date: '040895'
         })
-      expect(excited_message.offsets).to eq([7, 4, 11, 11, 14, "!", 26, 22, 14, 17, 11, 3, "!"])
+      expect(excited_message.character_index).to eq([7, 4, 11, 11, 14, "!", 26, 22, 14, 17, 11, 3, "!"])
       expect(excited_message.new_index).to eq([10, 31, 84, 31, 17, "!", 99, 42, 17, 44, 84, 23, "!"])
       expect(excited_message.encrypt).to eq("keder!sprrdx!")
       expect(excited_decrypted_message.decrypted_index).to eq([7, -23, -70, -16, 14, "!", -55, -5, 14, -10, -70, 3, "!"])
