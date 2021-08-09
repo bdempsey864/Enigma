@@ -76,6 +76,7 @@ RSpec.describe Encryption do
     end
 
     it 'can decrypt a message given key and date' do 
+      expect(decrypt_message.decrypt).to be_a String
       expect(decrypt_message.decrypt).to eq('hello world')
     end
 
