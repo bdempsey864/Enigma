@@ -50,26 +50,45 @@ RSpec.describe Encryption do
 
     it 'can encrypt a message using todays date' do 
       todays_date = Encryption.new({
-      message: 'hello world',
-      key: '02715',
-      date: "#{Time.now.strftime("%m")}#{Time.now.strftime("%d")}#{Time.now.strftime("%y")}"
-      })
+        message: 'hello world',
+        key: '02715',
+        date: "#{Time.now.strftime("%m")}#{Time.now.strftime("%d")}#{Time.now.strftime("%y")}"
+        })
 
       expect(todays_date.encrypt).to be_a String
     end
+  end
 
-    it '#decrypted_index' do 
-      expect(coded_message.decrypted_index).to eq([4, -23, -62, -9, 11, -1, -51, -6, 14, -16, -70])
-    end
-
-    it 'can decrypt a message given key and date' do 
-      decrypt_message = Encryption.new({
+  context '#decrypt' do
+    decrypt_message = Encryption.new({
       message: 'keder ohulw',
       key: '02715',
       date: '040895'
       })
+    it '#decrypted_index' do 
+      expect(decrypt_message.decrypted_index).to eq([7, -23, -70, -16, 14, -1, -59, -13, 17, -16, -51])
+    end
 
+    it 'can decrypt a message given key and date' do 
       expect(decrypt_message.decrypt).to eq('hello world')
+    end
+
+    it 'ignores special characters' do 
+      excited_message = Encryption.new({
+        message: 'hello! world!',
+        key: '02715',
+        date: '040895'
+        })
+      excited_decrypted_message = Encryption.new({
+        message: 'keder!sprrdx!',
+        key: '02715',
+        date: '040895'
+        })
+      expect(excited_message.offsets).to eq([7, 4, 11, 11, 14, "!", 26, 22, 14, 17, 11, 3, "!"])
+      expect(excited_message.new_index).to eq([10, 31, 84, 31, 17, "!", 99, 42, 17, 44, 84, 23, "!"])
+      expect(excited_message.encrypt).to eq("keder!sprrdx!")
+      expect(excited_decrypted_message.decrypted_index).to eq([7, -23, -70, -16, 14, "!", -55, -5, 14, -10, -70, 3, "!"])
+      expect(excited_decrypted_message.decrypt).to eq("hello! world!")
     end
   end
 end
