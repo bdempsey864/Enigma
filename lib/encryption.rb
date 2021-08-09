@@ -55,9 +55,9 @@ class Encryption
   end
 
   def new_index
-    fours = character_index.each_slice(4).to_a
+    message_grouped_by_four = character_index.each_slice(4).to_a
     new_index = []
-    fours.each do |four|
+    message_grouped_by_four.each do |four|
       four.each_with_index do |element, index|
         if !element.is_a? Integer
           new_index << element 
@@ -86,7 +86,7 @@ class Encryption
       key: self.key,
       date: self.date
     }
-    if @status == "encrypt" 
+    if @status == "encryption" 
       final_message[:encryption] = self.encrypt
     else 
       final_message[:decryption] = self.decrypt
@@ -95,9 +95,9 @@ class Encryption
   end
 
   def decrypted_index
-    fours = character_index.each_slice(4).to_a
+    message_grouped_by_four = character_index.each_slice(4).to_a
     decrypted_index = []
-    fours.each do |four|
+    message_grouped_by_four.each do |four|
       four.each_with_index do |element, index|
         if !element.is_a? Integer
           decrypted_index << element 

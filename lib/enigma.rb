@@ -21,7 +21,7 @@ class Enigma
       message: message,
       key: key,
       date: date, 
-      status: "encrypt" 
+      status: "encryption" 
     })
     encrypting.format_message
   end
@@ -31,7 +31,7 @@ class Enigma
       message: message,
       key: key,
       date: date,
-      status: "decrypt" 
+      status: "decryption" 
     })
     encrypting.format_message
   end
