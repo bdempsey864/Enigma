@@ -58,11 +58,11 @@ class Encryption
     fours = character_index.each_slice(4).to_a
     new_index = []
     fours.each do |four|
-      four.each_with_index do |ele, index|
-        if !ele.is_a? Integer
-          new_index << ele 
+      four.each_with_index do |element, index|
+        if !element.is_a? Integer
+          new_index << element 
         else
-          new_index << ele + shift[index]
+          new_index << element + shift[index]
         end
       end
     end
@@ -98,11 +98,11 @@ class Encryption
     fours = character_index.each_slice(4).to_a
     decrypted_index = []
     fours.each do |four|
-      four.each_with_index do |ele, index|
-        if !ele.is_a? Integer
-          decrypted_index << ele 
+      four.each_with_index do |element, index|
+        if !element.is_a? Integer
+          decrypted_index << element 
         else
-          decrypted_index << ele - shift[index]
+          decrypted_index << element - shift[index]
         end
       end
     end
