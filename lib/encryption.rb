@@ -45,7 +45,11 @@ class Encryption
   def offsets
     offsets = []
     @message.split("").each do |letter|
-      offsets << @alphabet.index(letter)
+      if !@alphabet.include?(letter)
+        offsets << letter
+      else 
+        offsets << @alphabet.index(letter)
+      end
     end
     offsets
   end
@@ -55,7 +59,11 @@ class Encryption
     new_index = []
     fours.each do |four|
       four.each_with_index do |ele, index|
-        new_index << ele + shift[index]
+        if !ele.is_a? Integer
+          new_index << ele 
+        else
+          new_index << ele + shift[index]
+        end
       end
     end
     new_index
@@ -64,7 +72,11 @@ class Encryption
   def encrypt
     encrypted_message = ""
     new_index.each do |index| 
-      encrypted_message << @alphabet[index%27]
+      if !index.is_a? Integer
+        encrypted_message << index
+      else
+        encrypted_message << @alphabet[index%27]
+      end
     end
     encrypted_message
   end
@@ -87,7 +99,11 @@ class Encryption
     decrypted_index = []
     fours.each do |four|
       four.each_with_index do |ele, index|
-        decrypted_index << ele - shift[index]
+        if !ele.is_a? Integer
+          decrypted_index << ele 
+        else
+          decrypted_index << ele - shift[index]
+        end
       end
     end
     decrypted_index
@@ -96,7 +112,11 @@ class Encryption
   def decrypt
     decrypted_message = ""
     decrypted_index.each do |index| 
-      decrypted_message << @alphabet[index%27]
+      if !index.is_a? Integer
+        decrypted_message << index
+      else
+        decrypted_message << @alphabet[index%27]
+      end
     end
     decrypted_message
   end
