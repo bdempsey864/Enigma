@@ -11,7 +11,7 @@ RSpec.describe Encryption do
     })
     
     it 'exists' do 
-      expect(coded_message).to be_instance_of Encryption
+      expect(coded_message).to be_an Encryption
     end
 
     it '#key_hash' do 
