@@ -65,6 +65,7 @@ RSpec.describe Encryption do
       key: '02715',
       date: '040895'
       })
+      
     it '#decrypted_index' do 
       expect(decrypt_message.decrypted_index).to eq([7, -23, -70, -16, 14, -1, -59, -13, 17, -16, -51])
     end
