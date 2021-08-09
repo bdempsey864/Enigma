@@ -42,20 +42,20 @@ class Encryption
     shift
   end
 
-  def offsets
-    offsets = []
+  def character_index
+    character_index = []
     @message.split("").each do |letter|
       if !@alphabet.include?(letter)
-        offsets << letter
+        character_index << letter
       else 
-        offsets << @alphabet.index(letter)
+        character_index << @alphabet.index(letter)
       end
     end
-    offsets
+    character_index
   end
 
   def new_index
-    fours = offsets.each_slice(4).to_a
+    fours = character_index.each_slice(4).to_a
     new_index = []
     fours.each do |four|
       four.each_with_index do |ele, index|
@@ -95,7 +95,7 @@ class Encryption
   end
 
   def decrypted_index
-    fours = offsets.each_slice(4).to_a
+    fours = character_index.each_slice(4).to_a
     decrypted_index = []
     fours.each do |four|
       four.each_with_index do |ele, index|
