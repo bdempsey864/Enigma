@@ -36,6 +36,15 @@ RSpec.describe Encryption do
       expect(coded_message.shift).to eq([3, 27, 73, 20])
     end
 
+    # it 'returns no nil values' do
+    #   excited_message = Encryption.new({
+    #   message: 'hello! world!',
+    #   key: '02715',
+    #   date: '040895'
+    # }) 
+    #   expect(excited_message.offsets).to eq([7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3])
+    # end
+
     it '#offsets' do
       expect(coded_message.offsets).to eq([7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3])
     end
@@ -70,6 +79,15 @@ RSpec.describe Encryption do
       })
 
       expect(decrypt_message.decrypt).to eq('hello world')
+    end
+
+    it 'leaves special characters in' do 
+      excited_message = Encryption.new({
+      message: 'hello! world!',
+      key: '02715',
+      date: '040895'
+    })
+      expect(excited_message.encrypt).to eq("keder ohulw!")
     end
   end
 end
