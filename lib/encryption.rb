@@ -69,28 +69,12 @@ class Encryption
     new_index
   end
 
-  def encrypt
-    encrypted_message = ""
-    new_index.each do |index| 
-      if !index.is_a? Integer
-        encrypted_message << index
-      else
-        encrypted_message << @alphabet[index%27]
-      end
-    end
-    encrypted_message
-  end
-
   def format_message
     final_message = {
       key: self.key,
       date: self.date
     }
-    if @status == "encryption" 
-      final_message[:encryption] = self.encrypt
-    else 
-      final_message[:decryption] = self.decrypt
-    end
+    final_message[@status.to_sym] = self.numbers_to_letters
     final_message
   end
 
@@ -109,15 +93,17 @@ class Encryption
     decrypted_index
   end
 
-  def decrypt
-    decrypted_message = ""
-    decrypted_index.each do |index| 
+  def numbers_to_letters
+    modified = decrypted_index
+    modified = new_index if @status == "encryption"
+    message = ""
+    modified.each do |index| 
       if !index.is_a? Integer
-        decrypted_message << index
+        message << index
       else
-        decrypted_message << @alphabet[index%27]
+        message << @alphabet[index%27]
       end
     end
-    decrypted_message
+    message
   end
 end

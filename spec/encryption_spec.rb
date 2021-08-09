@@ -7,7 +7,8 @@ RSpec.describe Encryption do
     coded_message = Encryption.new({
       message: 'hello world',
       key: '02715',
-      date: '040895'
+      date: '040895',
+      status: 'encryption'
     })
     
     it 'exists' do 
@@ -48,8 +49,8 @@ RSpec.describe Encryption do
     end
 
     it 'can encrypt a message given key and date' do
-      expect(coded_message.encrypt).to be_a String 
-      expect(coded_message.encrypt).to eq("keder ohulw")
+      expect(coded_message.numbers_to_letters).to be_a String 
+      expect(coded_message.numbers_to_letters).to eq("keder ohulw")
     end
 
     it 'can encrypt a message using todays date' do 
@@ -59,7 +60,7 @@ RSpec.describe Encryption do
         date: "#{Time.now.strftime("%m")}#{Time.now.strftime("%d")}#{Time.now.strftime("%y")}"
         })
 
-      expect(todays_date.encrypt).to be_a String
+      expect(todays_date.numbers_to_letters).to be_a String
     end
   end
 
@@ -76,26 +77,28 @@ RSpec.describe Encryption do
     end
 
     it 'can decrypt a message given key and date' do 
-      expect(decrypt_message.decrypt).to be_a String
-      expect(decrypt_message.decrypt).to eq('hello world')
+      expect(decrypt_message.numbers_to_letters).to be_a String
+      expect(decrypt_message.numbers_to_letters).to eq('hello world')
     end
 
     it 'ignores special characters' do 
       excited_message = Encryption.new({
         message: 'hello! world!',
         key: '02715',
-        date: '040895'
+        date: '040895',
+        status: 'encryption'
         })
       excited_decrypted_message = Encryption.new({
         message: 'keder!sprrdx!',
         key: '02715',
-        date: '040895'
+        date: '040895',
+        status: 'decryption'
         })
       expect(excited_message.character_index).to eq([7, 4, 11, 11, 14, "!", 26, 22, 14, 17, 11, 3, "!"])
       expect(excited_message.new_index).to eq([10, 31, 84, 31, 17, "!", 99, 42, 17, 44, 84, 23, "!"])
-      expect(excited_message.encrypt).to eq("keder!sprrdx!")
+      expect(excited_message.numbers_to_letters).to eq("keder!sprrdx!")
       expect(excited_decrypted_message.decrypted_index).to eq([7, -23, -70, -16, 14, "!", -55, -5, 14, -10, -70, 3, "!"])
-      expect(excited_decrypted_message.decrypt).to eq("hello! world!")
+      expect(excited_decrypted_message.numbers_to_letters).to eq("hello! world!")
     end
   end
 end
