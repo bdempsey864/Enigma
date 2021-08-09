@@ -22,11 +22,11 @@ class Encryption
 
   def date_hash
     date_hash = {}
-    offs = date.to_i**2
-    date_hash[:a_offset] = offs.to_s[-4]
-    date_hash[:b_offset] = offs.to_s[-3]
-    date_hash[:c_offset] = offs.to_s[-2]
-    date_hash[:d_offset] = offs.to_s[-1]
+    offset = (date.to_i**2).to_s
+    date_hash[:a_offset] = offset[-4]
+    date_hash[:b_offset] = offset[-3]
+    date_hash[:c_offset] = offset[-2]
+    date_hash[:d_offset] = offset[-1]
     date_hash
   end
 
