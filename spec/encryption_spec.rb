@@ -44,6 +44,7 @@ RSpec.describe Encryption do
 
     it '#new_index' do 
       expect(coded_message.new_index).to eq([10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76])
+      expect(coded_message.new_index.length).to eq(coded_message.character_index.length)
     end
 
     it 'can encrypt a message given key and date' do
