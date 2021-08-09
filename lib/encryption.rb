@@ -5,21 +5,10 @@ class Encryption
               :alphabet
   def initialize(data)
     @message = data[:message].downcase
-    @key = data.fetch(:key, format_key)
-    @date = data.fetch(:date, format_date)
+    @key = data.fetch(:key)
+    @date = data.fetch(:date)
     @alphabet = ("a".."z").to_a << " "
-  end
-
-  def format_date
-    "#{Time.now.strftime("%m")}#{Time.now.strftime("%d")}#{Time.now.strftime("%y")}"
-  end
-
-  def format_key
-    string = ""
-    until string.length == 5 do 
-      string << "#{rand(0..9)}"
-    end
-    string
+    @status = data[:status]
   end
 
   def key_hash
@@ -78,5 +67,37 @@ class Encryption
       encrypted_message << @alphabet[index%27]
     end
     encrypted_message
+  end
+
+  def format_message
+    final_message = {
+      key: self.key,
+      date: self.date
+    }
+    if @status == "encrypt" 
+      final_message[:encryption] = self.encrypt
+    else 
+      final_message[:decryption] = self.decrypt
+    end
+    final_message
+  end
+
+  def decrypted_index
+    fours = offsets.each_slice(4).to_a
+    decrypted_index = []
+    fours.each do |four|
+      four.each_with_index do |ele, index|
+        decrypted_index << ele - shift[index]
+      end
+    end
+    decrypted_index
+  end
+
+  def decrypt
+    decrypted_message = ""
+    decrypted_index.each do |index| 
+      decrypted_message << @alphabet[index%27]
+    end
+    decrypted_message
   end
 end
