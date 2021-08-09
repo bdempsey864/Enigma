@@ -34,6 +34,7 @@ RSpec.describe Encryption do
 
     it '#shift' do
       expect(coded_message.shift).to eq([3, 27, 73, 20])
+      expect(coded_message.shift.length).to eq 4
     end
 
     it '#character_index' do
