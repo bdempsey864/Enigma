@@ -48,6 +48,7 @@ RSpec.describe Encryption do
     end
 
     it 'can encrypt a message given key and date' do
+      expect(coded_message.encrypt).to be_a String 
       expect(coded_message.encrypt).to eq("keder ohulw")
     end
 
