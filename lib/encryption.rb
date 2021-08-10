@@ -54,21 +54,6 @@ class Encryption
     character_index
   end
 
-  def new_index
-    message_grouped_by_four = character_index.each_slice(4).to_a
-    new_index = []
-    message_grouped_by_four.each do |four|
-      four.each_with_index do |element, index|
-        if !element.is_a? Integer
-          new_index << element 
-        else
-          new_index << element + shift[index]
-        end
-      end
-    end
-    new_index
-  end
-
   def format_message
     final_message = {
       key: self.key,
@@ -78,7 +63,7 @@ class Encryption
     final_message
   end
 
-  def decrypted_index
+  def current_index
     message_grouped_by_four = character_index.each_slice(4).to_a
     decrypted_index = []
     message_grouped_by_four.each do |four|
@@ -86,18 +71,24 @@ class Encryption
         if !element.is_a? Integer
           decrypted_index << element 
         else
-          decrypted_index << element - shift[index]
+          decrypted_index << modified_index(element, index)
         end
       end
     end
     decrypted_index
   end
 
+  def modified_index(element, index)
+    if @status == "encryption"
+      element + shift[index]
+    else
+      element - shift[index]
+    end
+  end
+
   def numbers_to_letters
-    modified = decrypted_index
-    modified = new_index if @status == "encryption"
     message = ""
-    modified.each do |index| 
+    current_index.each do |index| 
       if !index.is_a? Integer
         message << index
       else
