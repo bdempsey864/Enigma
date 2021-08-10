@@ -44,8 +44,7 @@ RSpec.describe Encryption do
     end
 
     it '#new_index' do 
-      expect(coded_message.new_index).to eq([10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76])
-      expect(coded_message.new_index.length).to eq(coded_message.character_index.length)
+      expect(coded_message.current_index).to eq([10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76])
     end
 
     it 'can encrypt a message given key and date' do
@@ -72,8 +71,7 @@ RSpec.describe Encryption do
       })
       
     it '#decrypted_index' do 
-      expect(decrypt_message.decrypted_index).to eq([7, -23, -70, -16, 14, -1, -59, -13, 17, -16, -51])
-      expect(decrypt_message.decrypted_index.length).to eq(decrypt_message.new_index.length)
+      expect(decrypt_message.current_index).to eq([7, -23, -70, -16, 14, -1, -59, -13, 17, -16, -51])
     end
 
     it 'can decrypt a message given key and date' do 
@@ -95,9 +93,9 @@ RSpec.describe Encryption do
         status: 'decryption'
         })
       expect(excited_message.character_index).to eq([7, 4, 11, 11, 14, "!", 26, 22, 14, 17, 11, 3, "!"])
-      expect(excited_message.new_index).to eq([10, 31, 84, 31, 17, "!", 99, 42, 17, 44, 84, 23, "!"])
+      expect(excited_message.current_index).to eq([10, 31, 84, 31, 17, "!", 99, 42, 17, 44, 84, 23, "!"])
       expect(excited_message.numbers_to_letters).to eq("keder!sprrdx!")
-      expect(excited_decrypted_message.decrypted_index).to eq([7, -23, -70, -16, 14, "!", -55, -5, 14, -10, -70, 3, "!"])
+      expect(excited_decrypted_message.current_index).to eq([7, -23, -70, -16, 14, "!", -55, -5, 14, -10, -70, 3, "!"])
       expect(excited_decrypted_message.numbers_to_letters).to eq("hello! world!")
     end
   end
