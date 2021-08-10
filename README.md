@@ -23,38 +23,24 @@ Project is created with:
 To run this program, save a copy of this repository locally. In the MacOS
 application 'Terminal,' navigate into the _enigma_ directory.
 Then, run it using ruby (note: '$' is not typed).
-1. Clone the repo using the web url:
+Clone the repo using the web url:
    ```
-   $ git clone https://github.com/mekimball/futbol
-   ```
-   or with a password-protected SSH key:
-   ```
-   $ git clone git@github.com:mekimball/futbol.git
-   ```
-2. Change into the directory:
-   ```
-   $ cd ../futbol
-   ```
-3. Generate file, then open webpage by entering the following into Terminal:
-   ```
-   $ ruby server.rb
-   $ open webpage/index.html
+   $ git clone git@github.com:bdempsey864/Enigma.git
    ```
 ## Features
 List of features ready and TODOs for future development
-* Able to calculate league statistics
-* Able to calculate game statistics
-* Able to calculate statistics by specific team and season
+* Able to write a custom message to be encrypted
+* Able to use decrypt said message using key and date 
 ## Future Enhancements:
-* Make website pretty
-* Allow user to request specific team statistics on website
+* Get the Cracking feature working
+* Allow user to input custom keys and dates
+## Self Assessment
+* Functionality: 3
+* Object Oriented Programming: 3.5
+* Ruby Conventions and Mechanics: 4
+* Test Driven Development: 4
 ## Contact
 Created by
 * [@bdempsey864](https://github.com/bdempsey864)
-* [@kevinmugele](https://github.com/KevinMugele)
-* [@jamiejpace](https://github.com/jamiejpace)
-* [@mekimball](https://github.com/mekimball)
-* [@rowandw](https://github.com/RowanDW)
 
-~ feel free to contact us! ~
 ~ enjoy! ~
