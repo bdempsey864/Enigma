@@ -5,7 +5,8 @@
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
-* [Status](#status)
+* [Future Enhancements](#future-enhancements)
+* [Self Assessment](#self-assessment)
 * [Contact](#contact)
 ## General info
 This project is designed to pay homage to the original Enigma code breaker, and our school's namesake, Alan Turing.  
