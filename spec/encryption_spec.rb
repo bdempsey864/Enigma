@@ -43,7 +43,7 @@ RSpec.describe Encryption do
       expect(coded_message.character_index).to eq([7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3])
     end
 
-    it '#new_index' do 
+    it '#current_index' do 
       expect(coded_message.current_index).to eq([10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76])
     end
 
@@ -70,7 +70,7 @@ RSpec.describe Encryption do
       date: '040895'
       })
       
-    it '#decrypted_index' do 
+    it '#current_index' do 
       expect(decrypt_message.current_index).to eq([7, -23, -70, -16, 14, -1, -59, -13, 17, -16, -51])
     end
 
